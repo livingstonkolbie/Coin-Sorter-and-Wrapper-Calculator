@@ -3,52 +3,56 @@
 // Create a JavaScript program that calculates the total value of coins in US currency (pennies, nickels, dimes, and quarters) and sorts them into coin wrappers. The program will then output the number of coin wrappers needed and the total amount in dollars.
 
 
-// the computer knows how many pennies i have
-// every 50 pennies gets a wrap
-// i need the computer to 200/50 and see how many wraps the pennies need
-// then i need it to tell me the remainder left over
-
-
 let pennies = 1;
 let nickels = 5;
 let dimes = 10;
 let quarters = 25;
 
+let pennyWrapperCapacity = 50;
+let nickelWrapperCapacity = 40;
+let dimeWrapperCapacity = 50;
+let quarterWrapperCapacity = 40;
 
+// for some reason i can understand what's happening better when i use prompt() lol
 let userPennies = prompt('How many pennies do you have?');
 let userNickels = prompt('How many nickels do you have?');
 let userDimes = prompt('How many dimes do you have?');
 let userQuarters = prompt('How many quarters do you have?');
 
+//change it from string to number
+userPennies = Number(userPennies);
+userNickels = Number(userNickels);
+userDimes = Number(userDimes);
+userQuarters = Number(userQuarters);
 
 
 let penniesTotal = userPennies * 1;
 let nickelsTotal = userNickels * 5;
 let dimesTotal = userDimes * 10;
 let quartersTotal = userQuarters * 25;
+let totalValue = penniesTotal + nickelsTotal + dimesTotal + quartersTotal;
+
+// needs to round down - user Math.floor()
+let penniesWrapsNeeded = Math.floor(userPennies / pennyWrapperCapacity);
+let nickelsWrapsNeeded = Math.floor(userNickels / nickelWrapperCapacity);
+let dimesWrapsNeeded = Math.floor(userDimes / dimeWrapperCapacity);
+let quartersWrapsNeeded = Math.floor(userQuarters / quarterWrapperCapacity);
+
+//convert the totals to dollars
+// .toFixed(2) to make it like actual money
+let penniesToDollars = (penniesTotal / 100).toFixed(2);
+let nickelsToDollars = (nickelsTotal / 100).toFixed(2);
+let dimesToDollars = (dimesTotal / 100).toFixed(2);
+let quartersToDollars = (quartersTotal / 100).toFixed(2);
+
+// add in the remainder to the console.log()
+let leftoverPennies = userPennies % pennyWrapperCapacity;
+let leftoverNickels = userNickels % nickelWrapperCapacity;
+let leftoverDimes = userDimes % dimeWrapperCapacity;
+let leftoverQuarters = userQuarters % quarterWrapperCapacity;
 
 
-console.log(`this person gave ${userPennies} pennies, equaling ${penniesTotal}`);
-console.log(`this person gave ${userNickels} nickels, equaling ${nickelsTotal}`);
-console.log(`this person gave ${userDimes} dimess, equaling ${dimesTotal}`); 
-console.log(`this person gave ${userQuarters} quarters, equaling ${quartersTotal}`); 
-
-
-// the computer knows how many coins it has and what ammount of money it equals
-// i need to make a formula for the computer to know how many of each coin can fit into a wrap
-
-// all coins have separate wrappers
-// i need the computer to know which wrapper to use for each coin
-// array is on my mind... wrap = [pennies, nickels....] or something like that
-
-let wrap = 1;
-
-// if one pennieWrap is 50, how many wraps is for 200
-// i need the program to add another wrap every 50 pennies
-// make a for loop go through the pennies and at every 50, add a wrap to the total amount of wraps needed
-
-for (let i = 1; i <= userPennies.length; i++) {
-    if(userPennies % 50 === 0) {
-        console.log('');
-    }
-}
+console.log(`this person has ${userPennies} pennies- $${penniesToDollars}; they get ${penniesWrapsNeeded} "penny" wraps & will have ${leftoverPennies} pennies left over`);
+console.log(`this person has ${userNickels} nickels- $${nickelsToDollars}; they get ${nickelsWrapsNeeded} "nickel" wraps & will have ${leftoverNickels} nickels left over`);
+console.log(`this person has ${userDimes} dimes- $${dimesToDollars}; they get ${dimesWrapsNeeded} "dime" wraps & will have ${leftoverDimes} dimes left over`); 
+console.log(`this person has ${userQuarters} quarters- $${quartersToDollars}; they get ${quartersWrapsNeeded} "quarter" wraps & will have ${leftoverQuarters} quarters left over`); 
