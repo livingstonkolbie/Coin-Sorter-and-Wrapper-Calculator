@@ -56,3 +56,13 @@ console.log(`this person has ${userPennies} pennies- $${penniesToDollars}; they 
 console.log(`this person has ${userNickels} nickels- $${nickelsToDollars}; they get ${nickelsWrapsNeeded} "nickel" wraps & will have ${leftoverNickels} nickels left over`);
 console.log(`this person has ${userDimes} dimes- $${dimesToDollars}; they get ${dimesWrapsNeeded} "dime" wraps & will have ${leftoverDimes} dimes left over`); 
 console.log(`this person has ${userQuarters} quarters- $${quartersToDollars}; they get ${quartersWrapsNeeded} "quarter" wraps & will have ${leftoverQuarters} quarters left over`); 
+
+
+penniesToDollars = Number(penniesToDollars);
+nickelsToDollars = Number(nickelsToDollars);
+dimesToDollars = Number(dimesToDollars);
+quartersToDollars = Number(quartersToDollars);
+
+let sum = (penniesToDollars + nickelsToDollars + dimesToDollars + quartersToDollars).toFixed(2);
+
+console.log(`and all together, this person has $${sum}`);
